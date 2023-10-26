@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>scalepopgen</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        #sidebar {
+            position: fixed;
+            width: 250px;
+            height: 100%;
+            background: #333;
+            color: #fff;
+            padding: 20px;
+        }
+
+        #sidebar a {
+            text-decoration: none;
+        }
+
+        #sidebar a:visited {
+            color: #ddd;
+        }
+
+        #content {
+            margin-left: 300px;
+            padding: 20px;
+        }
+
+        #table-div {
+            display: flex;
+            justify-content: center;
+        }
+
+        table {
+            width: 800px;
+            max-width: 100%;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #333;
+            color: #fff;
+        }
+
+        li {
+            margin: 5px;
+            padding: 5px;
+        }
+
+        #sidebar li:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+        }
+
+        #icon {
+            width: 80px;
+            height: 80px;
+            margin: 10px;
+        }
+
+        #results,
+        #table {
+            margin: 10px;
+            padding: 10px;
+        }
+
+        #results a,
+        #results li {
+            color: #001457;
+            text-decoration: none;
+        }
+
+        #results a:hover,
+        #results li:hover {
+            color: #6203fa;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="sidebar">
+        <h2 align="center"><img src="icon.png" id="icon" alt="Icon"></h2>
+        <ul>
+            <li><a href="#">General Parameters</a></li>
+            <li><a href="#">Filters</a></li>
+            <li><a href="#">Gene1 Filters</a></li>
+            <li><a href="#">Gene2 Filters</a></li>
+            <li><a href="#">Gene3 Filters</a></li>
+        </ul>
+    </div>
+
+    <div id="general_params">
+        <div id="content">
+            <h2 align="center">scalepopgen 1</h2>
+            <div id="table-div">
+                <table id="table">
+                    <tr>
+                        <th>Parameter</th>
+                        <th>Value</th>
+                    </tr>
+                    {% for data in general_params %}
+                    <tr>
+                        <td>{{ data.parameter }}</td>
+                        <td>{{ data.value }}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+            <div id="results">
+                {% for result in general_params_results %}
+                <li><a href="#">{{ result }}</a></li>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <div id="filters">
+        <div id="content">
+            <h2 align="center">scalepopgen 2</h2>
+            <div id="table-div">
+                <table id="table">
+                    <tr>
+                        <th>Parameter</th>
+                        <th>Value</th>
+                    </tr>
+                    {% for data in filters %}
+                    <tr>
+                        <td>{{ data.parameter }}</td>
+                        <td>{{ data.value }}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+            <div id="results">
+                {% for result in filters_results %}
+                <li><a href="#">{{ result }}</a></li>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <div id="gene3">
+        <div id="content">
+            <h2 align="center">scalepopgen 3</h2>
+            <div id="table-div">
+                <table id="table">
+                    <tr>
+                        <th>Parameter</th>
+                        <th>Value</th>
+                    </tr>
+                    {% for data in gene3 %}
+                    <tr>
+                        <td>{{ data.parameter }}</td>
+                        <td>{{ data.value }}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+            <div id="results">
+                {% for result in gene3_results %}
+                <li><a href="#">{{ result }}</a></li>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <div id="gene4">
+        <div id="content">
+            <h2 align="center">scalepopgen 4</h2>
+            <div id="table-div">
+                <table id="table">
+                    <tr>
+                        <th>Parameter</th>
+                        <th>Value</th>
+                    </tr>
+                    {% for data in gene4 %}
+                    <tr>
+                        <td>{{ data.parameter }}</td>
+                        <td>{{ data.value }}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+            <div id="results">
+                {% for result in gene4_results %}
+                <li><a href="#">{{ result }}</a></li>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <div id="gene5">
+        <div id="content">
+            <h2 align="center">scalepopgen 5</h2>
+            <div id="table-div">
+                <table id="table">
+                    <tr>
+                        <th>Parameter</th>
+                        <th>Value</th>
+                    </tr>
+                    {% for data in gene5 %}
+                    <tr>
+                        <td>{{ data.parameter }}</td>
+                        <td>{{ data.value }}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+            <div id="results">
+                {% for result in gene5_results %}
+                <li><a href="#">{{ result }}</a></li>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <script>
+        const sidebarLinks = document.querySelectorAll('#sidebar a');
+        const contentDivs = document.querySelectorAll('#content');
+
+        // Show only the first content div and hide the rest
+        contentDivs.forEach((div, index) => {
+            if (index === 0) {
+                div.style.display = 'block';
+            } else {
+                div.style.display = 'none';
+            }
+        });
+
+        sidebarLinks.forEach((link, index) => {
+            link.addEventListener('click', () => {
+                // Hide all content divs
+                contentDivs.forEach(div => div.style.display = 'none');
+                // Show the selected content div
+                contentDivs[index].style.display = 'block';
+            });
+        });
+    </script>
+</body>
+
+</html>

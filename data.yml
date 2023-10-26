@@ -1,0 +1,101 @@
+# General parameters to be applied for all the analyses
+input: ${baseDir}/../nddb_zebu_data/*.{bed,bim,fam}
+outDir: ${baseDir}/../zebu_sig_sel_out/
+sample_map: none
+geo_plot_yml: ${baseDir}/parameters/plots/plot_sample_on_map.yml
+tile_yml: ${baseDir}/parameters/plots/tiles_info.yml
+f_chrom_len: ${baseDir}/../nddb_zebu_data/chrom_length.map
+f_pop_cord: ${baseDir}/../nddb_zebu_data/cordi_breed_abbv_size.2.txt
+f_pop_color: none
+fasta: none
+concate_vcf_prefix: scalepopgen
+cm_to_bp: 1000000
+max_chrom: 29
+outgroup: 00YAK
+allow_extra_chrom: false
+
+# Filtering parameters for SNPs and Samples to be applied before running the downstream analyses
+apply_indi_filters: false
+king_cutoff: -9
+rem_indi: none
+mind: -9
+indiv_summary: false
+apply_snp_filters: false
+remove_snps: none
+maf: -9
+min_meanDP: -9
+max_meanDP: -9
+hwe: -9
+minQ: -9
+
+# Parameters for the analyses associated with exploring genetic structure
+genetic_structure: true
+run_smartpca: true
+run_gds_pca: false
+ld_filt: false
+ld_window_size: 50
+ld_step_size: 10
+r2_value: 0.01
+structure_remove_indi: none
+smartpca_param: none
+pop_color_file: none
+f_pop_marker: none
+pca_yml: ${baseDir}/parameters/plots/pca.yml
+admixture: false
+admixture_yml: ${baseDir}/parameters/plots/admixture.yml
+starting_k_value: 2
+ending_k_value: 10
+cross_validation: 10
+termination_criteria: 0.0001
+plot_pop_order: none
+fst_based_nj_tree: true
+fst_nj_yml: ${baseDir}/parameters/plots/fst_nj.yml
+est_1_min_ibs_based_nj_tree: true
+ibs_nj_yml: ${baseDir}/parameters/plots/ibs_nj.yml
+
+# Treemix associated parameters
+treemix: true
+n_bootstrap: 0
+upper_limit: 30000
+starting_m_value: 0
+ending_m_value: 0
+n_iter: 3
+k_snps: 500
+
+# Parameters for the analyses associated with detecting signatures of selection
+sig_sel: true
+tajimas_d: true
+pi: true
+pairwise_fst: false
+single_vs_all_fst: false
+skip_chrmwise: true
+skip_phasing: false
+skip_pop: ${baseDir}/../data/breed_remove.txt
+skip_sel_outgroup: true
+min_samples_per_pop: 2
+tajimasd_window_size: 50000
+fst_window_size: 50000
+fst_step_size: 0
+pi_window_size: 50000
+pi_step_size: 0
+clr: true
+anc_files: create
+grid_space: 50000
+grid_points: 0
+sel_perc_cutoff: 0.1
+use_precomputed_afs: true
+use_recomb_map: none
+ihs: true
+xpehh: false
+selscan_map: none
+ihs_args: --maf 0.05 --max-gap 200000
+xpehh_args: --maf 0.05 --max-gap 200000
+ref_vcf: none
+cm_map: none
+burnin_val: 3
+iterations_val: 12
+impute_status: false
+ne_val: 1000000
+manhattplot_yml: ${baseDir}/parameters/plots/manhattanplot.yml
+norm_ihs_args: --bins 100
+norm_xpehh_args: --bins 100

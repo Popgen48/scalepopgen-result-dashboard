@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>scalepopgen</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        #sidebar {
+            position: fixed;
+            width: 250px;
+            height: 100%;
+            background: #333;
+            color: #fff;
+            padding: 20px;
+        }
+
+        #sidebar a {
+            text-decoration: none;
+        }
+
+        #sidebar a:visited {
+            color: #ddd;
+        }
+
+        #content {
+            margin-left: 300px;
+            padding: 20px;
+        }
+
+        #table-div {
+            display: flex;
+            justify-content: center;
+        }
+
+        table {
+            width: 800px;
+            max-width: 100%;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #333;
+            color: #fff;
+        }
+
+        li {
+            margin: 5px;
+            padding: 5px;
+        }
+
+        #sidebar li:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+        }
+
+        #icon {
+            width: 80px;
+            height: 80px;
+            margin: 10px;
+        }
+
+        #results,
+        #table {
+            margin: 10px;
+            padding: 10px;
+        }
+
+        #results a,
+        #results li {
+            color: #001457;
+            text-decoration: none;
+        }
+
+        #results a:hover,
+        #results li:hover {
+            color: #6203fa;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="sidebar">
+        <h2 align="center"><img src="icon.png" id="icon" alt="Icon"></h2>
+        <ul>
+            <li><a href="#">General Parameters</a></li>
+            <li><a href="#">Filters</a></li>
+            <li><a href="#">Gene1 Filters</a></li>
+            <li><a href="#">Gene2 Filters</a></li>
+            <li><a href="#">Gene3 Filters</a></li>
+        </ul>
+    </div>
+
+    <div id="general_params">
+        <div id="content">
+            <h2 align="center">scalepopgen 1</h2>
+            <div id="table-div">
+                <table id="table">
+                    <tr>
+                        <th>Parameter</th>
+                        <th>Value</th>
+                    </tr>
+                    
+                    <tr>
+                        <td>input</td>
+                        <td>${baseDir}/../nddb_zebu_data/*.{bed,bim,fam}</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>outDir</td>
+                        <td>${baseDir}/../zebu_sig_sel_out/</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>sample_map</td>
+                        <td>none</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>geo_plot_yml</td>
+                        <td>${baseDir}/parameters/plots/plot_sample_on_map.yml</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>tile_yml</td>
+                        <td>${baseDir}/parameters/plots/tiles_info.yml</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>f_chrom_len</td>
+                        <td>${baseDir}/../nddb_zebu_data/chrom_length.map</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>f_pop_cord</td>
+                        <td>${baseDir}/../nddb_zebu_data/cordi_breed_abbv_size.2.txt</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>f_pop_color</td>
+                        <td>none</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>fasta</td>
+                        <td>none</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>concate_vcf_prefix</td>
+                        <td>scalepopgen</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>cm_to_bp</td>
+                        <td>1000000</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>max_chrom</td>
+                        <td>29</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>outgroup</td>
+                        <td>00YAK</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>allow_extra_chrom</td>
+                        <td>false</td>
+                    </tr>
+                    
+                </table>
+            </div>
+            <div id="results">
+                
+            </div>
+        </div>
+    </div>
+
+    <div id="filters">
+        <div id="content">
+            <h2 align="center">scalepopgen 2</h2>
+            <div id="table-div">
+                <table id="table">
+                    <tr>
+                        <th>Parameter</th>
+                        <th>Value</th>
+                    </tr>
+                    
+                    <tr>
+                        <td>apply_indi_filters</td>
+                        <td>false</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>king_cutoff</td>
+                        <td>-9</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>rem_indi</td>
+                        <td>none</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>mind</td>
+                        <td>-9</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>indiv_summary</td>
+                        <td>false</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>apply_snp_filters</td>
+                        <td>false</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>remove_snps</td>
+                        <td>none</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>maf</td>
+                        <td>-9</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>min_meanDP</td>
+                        <td>-9</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>max_meanDP</td>
+                        <td>-9</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>hwe</td>
+                        <td>-9</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>minQ</td>
+                        <td>-9</td>
+                    </tr>
+                    
+                </table>
+            </div>
+            <div id="results">
+                
+            </div>
+        </div>
+    </div>
+
+    <div id="gene3">
+        <div id="content">
+            <h2 align="center">scalepopgen 3</h2>
+            <div id="table-div">
+                <table id="table">
+                    <tr>
+                        <th>Parameter</th>
+                        <th>Value</th>
+                    </tr>
+                    
+                    <tr>
+                        <td>genetic_structure</td>
+                        <td>true</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>run_smartpca</td>
+                        <td>true</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>run_gds_pca</td>
+                        <td>false</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>ld_filt</td>
+                        <td>false</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>ld_window_size</td>
+                        <td>50</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>ld_step_size</td>
+                        <td>10</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>r2_value</td>
+                        <td>0.01</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>structure_remove_indi</td>
+                        <td>none</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>smartpca_param</td>
+                        <td>none</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>pop_color_file</td>
+                        <td>none</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>f_pop_marker</td>
+                        <td>none</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>pca_yml</td>
+                        <td>${baseDir}/parameters/plots/pca.yml</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>admixture</td>
+                        <td>false</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>admixture_yml</td>
+                        <td>${baseDir}/parameters/plots/admixture.yml</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>starting_k_value</td>
+                        <td>2</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>ending_k_value</td>
+                        <td>10</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>cross_validation</td>
+                        <td>10</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>termination_criteria</td>
+                        <td>0.0001</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>plot_pop_order</td>
+                        <td>none</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>fst_based_nj_tree</td>
+                        <td>true</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>fst_nj_yml</td>
+                        <td>${baseDir}/parameters/plots/fst_nj.yml</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>est_1_min_ibs_based_nj_tree</td>
+                        <td>true</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>ibs_nj_yml</td>
+                        <td>${baseDir}/parameters/plots/ibs_nj.yml</td>
+                    </tr>
+                    
+                </table>
+            </div>
+            <div id="results">
+                
+            </div>
+        </div>
+    </div>
+
+    <div id="gene4">
+        <div id="content">
+            <h2 align="center">scalepopgen 4</h2>
+            <div id="table-div">
+                <table id="table">
+                    <tr>
+                        <th>Parameter</th>
+                        <th>Value</th>
+                    </tr>
+                    
+                    <tr>
+                        <td>treemix</td>
+                        <td>true</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>n_bootstrap</td>
+                        <td>0</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>upper_limit</td>
+                        <td>30000</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>starting_m_value</td>
+                        <td>0</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>ending_m_value</td>
+                        <td>0</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>n_iter</td>
+                        <td>3</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>k_snps</td>
+                        <td>500</td>
+                    </tr>
+                    
+                </table>
+            </div>
+            <div id="results">
+                
+            </div>
+        </div>
+    </div>
+
+    <div id="gene5">
+        <div id="content">
+            <h2 align="center">scalepopgen 5</h2>
+            <div id="table-div">
+                <table id="table">
+                    <tr>
+                        <th>Parameter</th>
+                        <th>Value</th>
+                    </tr>
+                    
+                    <tr>
+                        <td>sig_sel</td>
+                        <td>true</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>tajimas_d</td>
+                        <td>true</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>pi</td>
+                        <td>true</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>pairwise_fst</td>
+                        <td>false</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>single_vs_all_fst</td>
+                        <td>false</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>skip_chrmwise</td>
+                        <td>true</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>skip_phasing</td>
+                        <td>false</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>skip_pop</td>
+                        <td>${baseDir}/../data/breed_remove.txt</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>skip_sel_outgroup</td>
+                        <td>true</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>min_samples_per_pop</td>
+                        <td>2</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>tajimasd_window_size</td>
+                        <td>50000</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>fst_window_size</td>
+                        <td>50000</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>fst_step_size</td>
+                        <td>0</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>pi_window_size</td>
+                        <td>50000</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>pi_step_size</td>
+                        <td>0</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>clr</td>
+                        <td>true</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>anc_files</td>
+                        <td>create</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>grid_space</td>
+                        <td>50000</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>grid_points</td>
+                        <td>0</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>sel_perc_cutoff</td>
+                        <td>0.1</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>use_precomputed_afs</td>
+                        <td>true</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>use_recomb_map</td>
+                        <td>none</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>ihs</td>
+                        <td>true</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>xpehh</td>
+                        <td>false</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>selscan_map</td>
+                        <td>none</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>ihs_args</td>
+                        <td>--maf 0.05 --max-gap 200000</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>xpehh_args</td>
+                        <td>--maf 0.05 --max-gap 200000</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>ref_vcf</td>
+                        <td>none</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>cm_map</td>
+                        <td>none</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>burnin_val</td>
+                        <td>3</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>iterations_val</td>
+                        <td>12</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>impute_status</td>
+                        <td>false</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>ne_val</td>
+                        <td>1000000</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>manhattplot_yml</td>
+                        <td>${baseDir}/parameters/plots/manhattanplot.yml</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>norm_ihs_args</td>
+                        <td>--bins 100</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>norm_xpehh_args</td>
+                        <td>--bins 100</td>
+                    </tr>
+                    
+                </table>
+            </div>
+            <div id="results">
+                
+            </div>
+        </div>
+    </div>
+    <script>
+        const sidebarLinks = document.querySelectorAll('#sidebar a');
+        const contentDivs = document.querySelectorAll('#content');
+
+        // Show only the first content div and hide the rest
+        contentDivs.forEach((div, index) => {
+            if (index === 0) {
+                div.style.display = 'block';
+            } else {
+                div.style.display = 'none';
+            }
+        });
+
+        sidebarLinks.forEach((link, index) => {
+            link.addEventListener('click', () => {
+                // Hide all content divs
+                contentDivs.forEach(div => div.style.display = 'none');
+                // Show the selected content div
+                contentDivs[index].style.display = 'block';
+            });
+        });
+    </script>
+</body>
+
+</html>
