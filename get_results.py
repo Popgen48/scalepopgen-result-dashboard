@@ -4,7 +4,7 @@ import sys
 from util import load_yml
 
 
-def render(yml_path):
+def get_results(yml_path):
     # Define the Jinja2 environment
     env = Environment(loader=FileSystemLoader("."))
     template = env.get_template("template.html")
@@ -19,4 +19,4 @@ def render(yml_path):
 
 
 if __name__ == "__main__":
-    render(sys.argv[1])
+    get_results(sys.argv[1])

@@ -28,5 +28,5 @@ def load_yml(yml_path):
         else:
             continue
 
-    # print(grouped_dicts["general_params"])
+    # print(grouped_dicts)
     return grouped_dicts
