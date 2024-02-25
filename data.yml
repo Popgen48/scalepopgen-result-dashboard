@@ -15,12 +15,12 @@ outgroup: 00YAK
 allow_extra_chrom: false
 
 # Filtering parameters for SNPs and Samples to be applied before running the downstream analyses
-apply_indi_filters: false
+apply_indi_filters: True
 king_cutoff: -9
 rem_indi: none
 mind: -9
 indiv_summary: false
-apply_snp_filters: false
+apply_snp_filters: True
 remove_snps: none
 maf: -9
 min_meanDP: -9
@@ -29,7 +29,7 @@ hwe: -9
 minQ: -9
 
 # Parameters for the analyses associated with exploring genetic structure
-genetic_structure: true
+genetic_structure: True
 run_smartpca: true
 run_gds_pca: false
 ld_filt: false
@@ -54,11 +54,11 @@ est_1_min_ibs_based_nj_tree: true
 ibs_nj_yml: ${baseDir}/parameters/plots/ibs_nj.yml
 
 # Treemix associated parameters
-treemix: true
+treemix: True
 n_bootstrap: 0
 upper_limit: 30000
-starting_m_value: 0
-ending_m_value: 0
+starting_m_value: 3
+ending_m_value: 5
 n_iter: 3
 k_snps: 500
 

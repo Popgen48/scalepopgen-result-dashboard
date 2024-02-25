@@ -97,16 +97,22 @@
         <h2 align="center"><img src="icon.png" id="icon" alt="Icon"></h2>
         <ul>
             <li><a href="#">General Parameters</a></li>
+            
             <li><a href="#">Filters</a></li>
-            <li><a href="#">Gene1 Filters</a></li>
-            <li><a href="#">Gene2 Filters</a></li>
-            <li><a href="#">Gene3 Filters</a></li>
+            
+            
+            <li><a href="#">Genetic Structure</a></li>
+            
+            
+            <li><a href="#">Treemix</a></li>
+            
+            <li><a href="#">Signatures of selection</a></li>
         </ul>
     </div>
 
     <div id="general_params">
         <div id="content">
-            <h2 align="center">scalepopgen 1</h2>
+            <h2 align="center">General Parameters</h2>
             <div id="table-div">
                 <table id="table">
                     <tr>
@@ -186,15 +192,13 @@
                     
                 </table>
             </div>
-            <div id="results">
-                
-            </div>
         </div>
     </div>
 
+    
     <div id="filters">
         <div id="content">
-            <h2 align="center">scalepopgen 2</h2>
+            <h2 align="center">Filters</h2>
             <div id="table-div">
                 <table id="table">
                     <tr>
@@ -204,7 +208,7 @@
                     
                     <tr>
                         <td>apply_indi_filters</td>
-                        <td>false</td>
+                        <td>True</td>
                     </tr>
                     
                     <tr>
@@ -229,7 +233,7 @@
                     
                     <tr>
                         <td>apply_snp_filters</td>
-                        <td>false</td>
+                        <td>True</td>
                     </tr>
                     
                     <tr>
@@ -266,13 +270,20 @@
             </div>
             <div id="results">
                 
+                <li><a href="./results/individual_genotype_summary.html">Individual Genotype Summary</a></li>
+                
+                
+                <li><a href="./results/chromosome_wise.html">Chromosome-wise Genotype Summary</a></li>
+                
             </div>
         </div>
     </div>
+    
 
-    <div id="gene3">
+    
+    <div id="genetic_structure">
         <div id="content">
-            <h2 align="center">scalepopgen 3</h2>
+            <h2 align="center">Genetic Structure</h2>
             <div id="table-div">
                 <table id="table">
                     <tr>
@@ -282,7 +293,7 @@
                     
                     <tr>
                         <td>genetic_structure</td>
-                        <td>true</td>
+                        <td>True</td>
                     </tr>
                     
                     <tr>
@@ -399,13 +410,24 @@
             </div>
             <div id="results">
                 
+                <li><a href="results/dummy_smartpca.html">smartpca results</a></li>
+                
+                
+                
+                <li><a href="results/dummy_fst.html">fst-based nj tree</a></li>
+                
+                
+                <li><a href="results/dummy_ibs.html">ibs-based nj results</a></li>
+                
             </div>
         </div>
     </div>
+    
 
-    <div id="gene4">
+    
+    <div id="treemix">
         <div id="content">
-            <h2 align="center">scalepopgen 4</h2>
+            <h2 align="center">Treemix</h2>
             <div id="table-div">
                 <table id="table">
                     <tr>
@@ -415,7 +437,7 @@
                     
                     <tr>
                         <td>treemix</td>
-                        <td>true</td>
+                        <td>True</td>
                     </tr>
                     
                     <tr>
@@ -430,12 +452,12 @@
                     
                     <tr>
                         <td>starting_m_value</td>
-                        <td>0</td>
+                        <td>3</td>
                     </tr>
                     
                     <tr>
                         <td>ending_m_value</td>
-                        <td>0</td>
+                        <td>5</td>
                     </tr>
                     
                     <tr>
@@ -451,14 +473,19 @@
                 </table>
             </div>
             <div id="results">
+                <li><a href="results/dummy_treemix.pdf">phylogenetic tree</a></li>
+                <li><a href="results/dummy_optM.pdf">optimal migration edges</a></li>
+                
+                <li><a href="results/dummy_mig.pdf">migration edges.pdf</a></li>
                 
             </div>
         </div>
     </div>
+    
 
-    <div id="gene5">
+    <div id="signs">
         <div id="content">
-            <h2 align="center">scalepopgen 5</h2>
+            <h2 align="center">Signatures of selection</h2>
             <div id="table-div">
                 <table id="table">
                     <tr>

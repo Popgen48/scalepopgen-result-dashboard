@@ -97,16 +97,22 @@
         <h2 align="center"><img src="icon.png" id="icon" alt="Icon"></h2>
         <ul>
             <li><a href="#">General Parameters</a></li>
+            {% if filters | selectattr("parameter", "equalto", "apply_indi_filters") | map(attribute="value") | first or filters | selectattr("parameter", "equalto", "apply_snp_filters") | map(attribute="value") | first %}
             <li><a href="#">Filters</a></li>
-            <li><a href="#">Gene1 Filters</a></li>
-            <li><a href="#">Gene2 Filters</a></li>
-            <li><a href="#">Gene3 Filters</a></li>
+            {% endif %}
+            {% if genetic_struct | selectattr("parameter", "equalto", "genetic_structure") | map(attribute="value") | first %}
+            <li><a href="#">Genetic Structure</a></li>
+            {% endif %}
+            {% if treemix | selectattr("parameter", "equalto", "treemix") | map(attribute="value") | first %}
+            <li><a href="#">Treemix</a></li>
+            {% endif %}
+            <li><a href="#">Signatures of selection</a></li>
         </ul>
     </div>
 
     <div id="general_params">
         <div id="content">
-            <h2 align="center">scalepopgen 1</h2>
+            <h2 align="center">General Parameters</h2>
             <div id="table-div">
                 <table id="table">
                     <tr>
@@ -121,17 +127,13 @@
                     {% endfor %}
                 </table>
             </div>
-            <div id="results">
-                {% for result in general_params_results %}
-                <li><a href="#">{{ result }}</a></li>
-                {% endfor %}
-            </div>
         </div>
     </div>
 
+    {% if filters | selectattr("parameter", "equalto", "apply_indi_filters") | map(attribute="value") | first or filters | selectattr("parameter", "equalto", "apply_snp_filters") | map(attribute="value") | first %}
     <div id="filters">
         <div id="content">
-            <h2 align="center">scalepopgen 2</h2>
+            <h2 align="center">Filters</h2>
             <div id="table-div">
                 <table id="table">
                     <tr>
@@ -147,23 +149,28 @@
                 </table>
             </div>
             <div id="results">
-                {% for result in filters_results %}
-                <li><a href="#">{{ result }}</a></li>
-                {% endfor %}
+                {% if filters | selectattr("parameter", "equalto", "apply_indi_filters") | map(attribute="value") | first %}
+                <li><a href="./results/individual_genotype_summary.html">Individual Genotype Summary</a></li>
+                {% endif %}
+                {% if filters | selectattr("parameter", "equalto", "apply_snp_filters") | map(attribute="value") | first %}
+                <li><a href="./results/chromosome_wise.html">Chromosome-wise Genotype Summary</a></li>
+                {% endif %}
             </div>
         </div>
     </div>
+    {% endif %}
 
-    <div id="gene3">
+    {% if genetic_struct | selectattr("parameter", "equalto", "genetic_structure") | map(attribute="value") | first %}
+    <div id="genetic_structure">
         <div id="content">
-            <h2 align="center">scalepopgen 3</h2>
+            <h2 align="center">Genetic Structure</h2>
             <div id="table-div">
                 <table id="table">
                     <tr>
                         <th>Parameter</th>
                         <th>Value</th>
                     </tr>
-                    {% for data in gene3 %}
+                    {% for data in genetic_struct %}
                     <tr>
                         <td>{{ data.parameter }}</td>
                         <td>{{ data.value }}</td>
@@ -172,23 +179,34 @@
                 </table>
             </div>
             <div id="results">
-                {% for result in gene3_results %}
-                <li><a href="#">{{ result }}</a></li>
-                {% endfor %}
+                {% if smartpca %}
+                <li><a href="{{ smartpca }}">smartpca results</a></li>
+                {% endif %}
+                {% if admixture %}
+                <li><a href="{{ admixture }}">admixture results</a></li>
+                {% endif %}
+                {% if fst %}
+                <li><a href="{{ fst }}">fst-based nj tree</a></li>
+                {% endif %}
+                {% if ibs %}
+                <li><a href="{{ ibs }}">ibs-based nj results</a></li>
+                {% endif %}
             </div>
         </div>
     </div>
+    {% endif %}
 
-    <div id="gene4">
+    {% if treemix | selectattr("parameter", "equalto", "treemix") | map(attribute="value") | first %}
+    <div id="treemix">
         <div id="content">
-            <h2 align="center">scalepopgen 4</h2>
+            <h2 align="center">Treemix</h2>
             <div id="table-div">
                 <table id="table">
                     <tr>
                         <th>Parameter</th>
                         <th>Value</th>
                     </tr>
-                    {% for data in gene4 %}
+                    {% for data in treemix %}
                     <tr>
                         <td>{{ data.parameter }}</td>
                         <td>{{ data.value }}</td>
@@ -197,23 +215,26 @@
                 </table>
             </div>
             <div id="results">
-                {% for result in gene4_results %}
-                <li><a href="#">{{ result }}</a></li>
-                {% endfor %}
+                <li><a href="{{ phylotree }}">phylogenetic tree</a></li>
+                <li><a href="{{ optm }}">optimal migration edges</a></li>
+                {% if mig %}
+                <li><a href="{{ mig }}">migration edges.pdf</a></li>
+                {% endif %}
             </div>
         </div>
     </div>
+    {% endif %}
 
-    <div id="gene5">
+    <div id="signs">
         <div id="content">
-            <h2 align="center">scalepopgen 5</h2>
+            <h2 align="center">Signatures of selection</h2>
             <div id="table-div">
                 <table id="table">
                     <tr>
                         <th>Parameter</th>
                         <th>Value</th>
                     </tr>
-                    {% for data in gene5 %}
+                    {% for data in signs %}
                     <tr>
                         <td>{{ data.parameter }}</td>
                         <td>{{ data.value }}</td>
